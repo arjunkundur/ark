@@ -1,0 +1,22 @@
+---
+- hosts: tomcat
+  become: true
+  gather_facts: False
+  tasks:
+
+- name: Install JDK 1.8 in Redhat linux
+    yum: name=java-1.8.0-openjdk state=present update_cache=yes
+    
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: http://mirror.metrocast.net/apache/tomcat/tomcat-7/v7.0.88/bin/apache-tomcat-7.0.88.zip
+    dest: /home/sree/
+    remote_src: yes
+    
+- name: Give execute permissions for .sh file
+  file:
+    path: /home/sree/apache-tomcat-7.0.88/bin/*.sh
+    mode: 0777
+    
+- name: Start Tomcat
+  command: ./home/sree/apache-tomcat-7.0.88/bin/startup.sh
