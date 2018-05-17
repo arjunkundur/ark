@@ -19,4 +19,4 @@
     mode: 0777
     
 - name: Start Tomcat
-  command: ./home/sree/apache-tomcat-7.0.88/bin/startup.sh
+  shell: ./home/sree/apache-tomcat-7.0.88/bin/startup.sh
